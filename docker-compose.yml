@@ -2,19 +2,30 @@ version: "3"
 services:
   zero:
     image: qnib/plain-dgraph
+    networks: ["dgraphnet"]
     ports:
       - 7080:7080
   server:
     image: qnib/plain-dgraph
+    networks: ["dgraphnet"]
     ports:
       - 7081:7081
       - 8081:8081
       - 9081:9081
+    deploy:
+      mode: replicated
+      replicas: 3
+    environment:
+      - DGRAPH_IDX={{.Task.Slot}}
     volumes:
       - /dgraph
     command: "/opt/qnib/dgraph/bin/dgraph.sh server"
   ui:
     image: qnib/plain-dgraph
+    networks: ["dgraphnet"]
     ports:
       - 8082:8082
     command: "/opt/qnib/dgraph/bin/dgraph.sh ratel"
+
+networks:
+  dgraphnet:
