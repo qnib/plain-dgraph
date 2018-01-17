@@ -1,12 +1,12 @@
 version: "3"
 services:
   zero:
-    image: qnib/plain-dgraph
+    image: qnib/plain-dgraph:v1.0.1-1
     networks: ["dgraphnet"]
     ports:
       - 7080:7080
   server:
-    image: qnib/plain-dgraph
+    image: qnib/plain-dgraph:v1.0.1-1
     networks: ["dgraphnet"]
     ports:
       - 7081:7081
@@ -21,7 +21,7 @@ services:
       - /dgraph
     command: "/opt/qnib/dgraph/bin/dgraph.sh server"
   ui:
-    image: qnib/plain-dgraph
+    image: qnib/plain-dgraph:v1.0.1-1
     networks: ["dgraphnet"]
     ports:
       - 8082:8082
