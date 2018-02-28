@@ -2,6 +2,7 @@ FROM qnib/uplain-init
 
 ARG DGRAPH_URL=https://github.com/dgraph-io/dgraph
 ARG DGRAPH_VER=v1.0.1
+ENV DGRAPH_ZERO_ADDR=tasks.zero
 RUN apt-get update \
  && apt-get install -y wget iproute2 curl jq \
  && wget -qO - \
